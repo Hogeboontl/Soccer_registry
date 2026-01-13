@@ -1,55 +1,144 @@
-# Soccer_registry
+Soccer Registry
 
-overview:
-    This program intends to act as a registry for a youth soccer league (from ages 4 to 16). With this goal in mind, it includes the features for starting a new season, adding a player, searching for players, 
-    displaying stats, printing names and editing player data. 
+A console-based registry system for managing a youth soccer league (ages 4–16). The program supports season management, player registration, searching, editing, and basic statistics, with persistent storage between sessions.
 
-program specifications:
-    the program has a main file that acts as the main view of the program and gives the user access to a menu. From here, the program will execute whatever function is dictated by the menu. 
-    There are also menus for editing a player and for the search view, and these function similarly to the main view. 
-    All of the player data is contained in a map with the key being a string with the combined last and first name of the player. The value of the map is an object called entry which just combines
-    all of the necessary data for that player(first and last name, birthday, registration and category). A vector of Entries was a possible alternative but sorting the vector would have been more work then just using a map. The program is split into a header, 
-    library and main file. The library contains all of the functions called and is by far the largest file.
-    The program is highly modular, as almost all features are contained within their own function. Any self explanatory or non major feature is excluded from this document.
-    Between sessions, the program stores the data in a file titled save.txt that looks like this: 
+Features
 
-    year
-    number of entries
-    the key of the first entry 
-    all of the data contained within the entry object seperated by spaces
-    key to second entry
-    etc.
+Start a new season
 
-program start up:
-    On program start up, it will call a function to read from a file titled save.txt that stores previous inputs to the program. If the file isn't present, it will create it.
-    if the user messes with the save file and doesn't put data in the correct format, it will not read in correctly.
-    After checking for the file, it will check to see if there is a year, if there isn't one, it makes the user input the current season.  
-    it error checks and will only accept positive integer values before a character that would fail the error check. 
+Add and edit players
 
-starting a new season:
-    The function for starting a new season asks for confirmation before clearing data. This is error checked and only a y or n input will work. The season year is error checked just
-    like in the start up function.
+Search players by multiple criteria
 
-adding a player:
-    Adding a player involves inputting a first and last name, as well as a birth year and registration status into the function.
-    
-    The names are only checked for capitilization and any special characters, spaces or integers will cause the search function and possibly others to fail
-    due to the sorting of maps relying on ASCII value comparisons. (I think error checking these could be implemented at a later date, it would just require a little more effort).
+Display player statistics
 
-    The birth year is error checked to make sure the age will fall into the bounds of the league as well as error checked for non integer characters. It will also automatically input the 
-    players category
+Persistent data storage between program runs
 
-    The registration status is error checked for any non y/n answers.
+Program Structure
+Main File
 
-searching for player(s):
-    Searching for players opens a menu that allows you select every criteria you want to search for. It will only read digits in and will do so even if characters are between them.
-    It is error checked in the same capacity that adding a player is.
-    Searching via category is only error checked for capitilization since it requires a string with both a letter and numbers.
+Serves as the primary interface and displays the main menu. User selections determine which program functions are executed.
 
-editing a player:
-    Editing a player allows the user to change all of the criteria in the add player function. It follows all the same error checking. It has a back feature so that the user can edit as much as they want
-    instead of having to reopen the edit function.
+Menus
 
-Printing:
-    Using the print in the main function results in the names of all players getting printed to a chosen file sorted by category and then alphabetically. Using it in the search menu
-    results in only those present in the search getting printed. The print function will create a file if it is not present. It does not error check the file.
+Separate menus are used for:
+
+Main operations
+
+Player searching
+
+Player editing
+
+All menus follow the same interaction pattern.
+
+Data Storage
+
+Player data is stored in a map.
+
+Key: Combined last name and first name (string)
+
+Value: Entry object containing:
+
+First name
+
+Last name
+
+Birth year
+
+Registration status
+
+Category
+
+A map was chosen instead of a vector to avoid manual sorting.
+
+Files
+
+Header file
+
+Library file (contains most program logic)
+
+Main file (entry point and UI)
+
+Save File
+
+Player data is stored in save.txt to persist information between sessions.
+
+File Format
+
+season year
+number of entries
+key of first entry
+entry data (space-separated)
+key of second entry
+...
+
+Note: If save.txt is edited incorrectly or does not follow this format, the program may fail to load data properly.
+
+Program Startup
+
+On launch, the program attempts to read save.txt.
+
+If the file does not exist, it is created automatically.
+
+If no season year is found, the user is prompted to enter one.
+
+Input is validated to ensure only positive integers are accepted.
+
+Starting a New Season
+
+The user must confirm before existing data is cleared.
+
+Only y or n responses are accepted.
+
+The new season year uses the same validation as startup input.
+
+Adding a Player
+
+Required inputs:
+
+First name
+
+Last name
+
+Birth year
+
+Registration status
+
+Validation details:
+
+Names are checked for capitalization only.
+Special characters, spaces, or numbers may cause issues due to ASCII-based map ordering.
+
+Birth year is validated to ensure the player’s age falls within league limits.
+
+Player category is assigned automatically.
+
+Registration status accepts only y or n.
+
+Searching for Players
+
+A search menu allows filtering by multiple criteria.
+
+Numeric input is extracted even if characters are present.
+
+Validation follows the same rules as player creation.
+
+Category searches are only checked for capitalization, as they require alphanumeric input.
+
+Editing a Player
+
+Allows modification of all player fields.
+
+Uses the same validation rules as adding a player.
+
+Includes a back option so multiple edits can be made without restarting the edit process.
+
+Notes
+
+The program is highly modular, with most features implemented as independent functions.
+
+Minor or self-explanatory features are not documented in detail here.
+
+License
+
+This project is provided for educational purposes.
