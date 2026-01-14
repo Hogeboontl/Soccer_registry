@@ -37,10 +37,15 @@ Player data is stored in `save.txt` to persist information between sessions.
 
 ### File Format
 season year
+
 number of entries
+
 key of first entry
-entry data (space-separated)
+
+entry data 
+
 key of second entry
+
 ...
 
 
