@@ -4,6 +4,24 @@ A freshman year course assignment featuring a console-based registry system for 
 
 ---
 
+# How to Run
+
+## Prerequisites
+
+This program is written in C++ and requires:
+
+- A C++ compiler (`g++` or `clang++`)
+- `make` build system
+
+### From the project directory, compile the program using
+```
+make
+```
+### Run the program
+```
+./soc
+```
+
 ## Features
 
 - Start a new season
