@@ -9,13 +9,13 @@
 using namespace std;
 
 void Roster::add_player(){
+    cin.ignore( numeric_limits<streamsize>::max(), '\n' );
     string f, l;
     bool r;
     int b;
     cout << "input new players last name: ";
-    cin.get();
     getline(cin, l);
-    for (char & c : l) c =tolower(c); // lowercases the whole last name so it stays organized nicely, sorry hyphenated names
+    for (char & c : l) c =tolower(c); // lowercases the whole last name so it stays organized
     l[0] = toupper(l[0]); // capitalizes the first letter of the last name for the search function
     cout << "input new players first name: ";
     getline(cin, f);
@@ -49,7 +49,7 @@ void Roster::add_player(){
             }
         }
         cin.clear(); // removes the failure flag
-        cin.ignore( numeric_limits<streamsize>::max(), '\n' ); // ensures the rest of the line is ignored- had to google this command
+        cin.ignore( numeric_limits<streamsize>::max(), '\n' ); // ensures the rest of the line is ignored
     } while (!input_ok);
     b = birth_year;
     bool more = true;
@@ -78,10 +78,10 @@ void Roster::add_player(){
 }
 
 void Roster::reset() {
+    cin.ignore( numeric_limits<streamsize>::max(), '\n' );
     bool more = true;
     bool input_ok = false;
     char ans;
-    cin.get(); // removes newline character after input from main
     while (more) { // copy pasted from above to ensure we get a valid answer
         cout << "are you sure you want to start a new season? (y/n) ";
         cin >> ans;
@@ -118,7 +118,7 @@ void Roster::reset() {
 }
 
 void Roster::search(){
-    cin.get(); 
+    cin.ignore( numeric_limits<streamsize>::max(), '\n' );
     vector<int> choices;
     string input;
     search_results = data;
@@ -128,19 +128,18 @@ void Roster::search(){
     }
     cout << "select criteria to search by (input the numbers with spaces inbetween then press enter, or leave blank to go back)" << endl;
     cout << "1. last name \n" << "2. first name \n" << "3. keyword \n" << "4. year of birth \n" << "5. registration status \n" << "6. league category \n";
-    // I preferred allowing the user to choose the combination of criteria they wanted upfront, because stepping through each one
-    // becomes time consuming both for me and the user.
+    // I preferred allowing the user to choose the combination of criteria they wanted upfront
     getline(cin, input); // because of this design choice, we need all of their inputs at once
     for (char c : input) {
         if (isdigit(c)) { // had to google this command- ensures the input is an integer
-            choices.push_back(c - '0'); // Subtracting the ASCII values results in the correct integer number- had to google this trick too
+            choices.push_back(c - '0'); // Subtracting the ASCII values results in the correct integer number
         }
     }
     bool exit_loop = false;
     for (int criteria : choices) { 
         if (exit_loop) break; // will break the range based loop if the search is empty, so you don't have to go through all specifications
         switch(criteria) {
-            case 1: { // fully working unless sorting is messed up by hyphens or special characters
+            case 1: { 
                 string l;
                 cout << "Input the first letter(s) of the last name (e.g., 'S', 'Sm', 'Smith'; leave blank for all): ";
                 getline (cin, l);
@@ -190,7 +189,7 @@ void Roster::search(){
                 break;
                 }
             case 3: { 
-                // just in case they do want to search for smith with 'th" although they also get last names too. I don't really like this function
+                // just in case they do want to search for smith with 'th" although they also get last names too. 
                 string keyword;
                 cout << "input any letter(s) to search for in last and first names (leave blank for all and check capitalization): ";
                 getline(cin, keyword);
@@ -225,7 +224,7 @@ void Roster::search(){
                     cin.clear(); 
                     cin.ignore( numeric_limits<streamsize>::max(), '\n' );  
                 } while (!input_ok);
-                if (birth_year != '0') {
+                if (birth_year != 0) {
                     for (auto i = search_results.begin(); i != search_results.end();) {
                         if (i->second.byear != birth_year) {
                             i = search_results.erase(i); 
@@ -373,7 +372,7 @@ void Roster::edit( map <string, Entry>::iterator current_iterator){
         cout << static_cast<char>(12);
         cout << "what would you like to edit on the selected player?" << endl;
         cout << "----------------------------------------------" << endl;
-        cout << "last name (L)|| first name(f)|| year of birth(y) || registration status (r)|| go back (b) ||" << endl;
+        cout << "last name (L)|| first name(f)|| year of birth(y) || registration status (r)|| go back (b)" << endl;
         cout << "----------------------------------------------" << endl;
         cin >> ans3;
         switch(ans3) {
@@ -586,12 +585,14 @@ void Roster::display() {
             if (e.reg == true) { // checks for all paid players
                 number_reg++;
                 for( int i = 0; i < categories.size(); i++){ // finds the category and adds to it
-                    if (categories[i] == e.category) category_count[i]++;
-                    break;
+                    if (categories[i] == e.category) {
+                        category_count[i]++;
+                        break;
+                    }
                 }
             }
         }
-        cout << "total number of players: " << data.size() << endl;
+        cout << "total number of players: " << data.size() << "\n" << "total number of paid players: " << number_reg <<  endl;
         for (int i = 0; i < categories.size(); i++){
             cout << "number of players who have paid in category " << categories[i] << " is: " << category_count[i] << endl;
         }

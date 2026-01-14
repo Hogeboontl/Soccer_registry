@@ -17,7 +17,7 @@ int main(){
     myrost.number_of_players();
     cout << " players" << endl << "what would you like to do? " << endl;
     cout <<  "------------------------------------------------------" << endl;
-    cout << "start new season (n) || add player (a) || quit (q) || search (s) || display stats (d) || print (p)||" << endl;
+    cout << "start new season (n) || add player (a) || quit (q) || search (s) || display stats (d) || print (p)" << endl;
     cout << "------------------------------------------------------" << endl;
     cin >> ans;
     switch (ans) {

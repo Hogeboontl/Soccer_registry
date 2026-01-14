@@ -9,15 +9,12 @@ A console-based registry system for managing a youth soccer league (ages 4–16)
 - Start a new season
 - Add and edit players
 - Search players by multiple criteria
-- Display player statistics
+- Display youth category data 
 - Persistent data storage between program runs
 
 ---
 
 ## Program Structure
-
-### Main File
-Serves as the primary interface and displays the main menu. User selections determine which program functions are executed.
 
 ### Menus
 Separate menus are used for:
@@ -94,9 +91,6 @@ Validation details:
 ---
 
 ## Notes
-
-- The program is highly modular, with most features implemented as independent functions.
-- Minor or self-explanatory features are not documented in detail here.
 
 ---
 
