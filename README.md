@@ -1,6 +1,6 @@
 # Soccer Registry
 
-A console-based registry system for managing a youth soccer league (ages 4–16). The program supports season management, player registration, searching, editing, and basic statistics, with persistent storage between sessions.
+A freshman year course assignment featuring a console-based registry system for managing a youth soccer league (ages 4–16). The program supports season management, player registration, searching, editing, and basic statistics, with persistent storage between sessions.
 
 ---
 
@@ -91,6 +91,7 @@ Validation details:
 ---
 
 ## Notes
+- missing a delete feature as well as some other QOL features such as a table view for the search function.
 
 ---
 
